@@ -105,7 +105,7 @@ AS BEGIN
 	UPDATE empresas SET
 		estado = 0,
 		fechabaja = GETDATE()
-	WHERE idempresa = 1
+	WHERE idempresa = @idempresa
 END
 GO
 
