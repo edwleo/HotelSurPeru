@@ -48,6 +48,8 @@ GO
 EXEC spu_empresas_registrar 'Importaciones del Sur', '20454748586', 'Jiron San Miguel 123 Ica Ica Ica', '',''
 EXEC spu_empresas_registrar 'Taxi el Veloz SAC', '20457452581', 'Av. Paraiso 789 Pisco Pisco Ica', '956789441',''
 EXEC spu_empresas_registrar 'ISTP Ingenieros', '20254748451', 'Urb. Lima Mz H lote 5 Chincha Alta Chincha Ica', '987123005','istpingenieros@gmail.com'
+EXEC spu_empresas_registrar 'Municipalidad de Sunampe', '20454545451', 'Jiron Olivar 123 Sunampe Chincha Ica', '', ''
+EXEC spu_empresas_registrar 'Municipalidad de Grocio Prado', '20454545777', 'Calle Olivar 123 Grocio Prado Chincha Ica', '', ''
 GO
 
 CREATE PROCEDURE spu_empresas_listar
@@ -120,3 +122,5 @@ GO
 -- Dejar todo como estaba...
 UPDATE empresas SET fechabaja = NULL, estado = 1
 GO
+
+

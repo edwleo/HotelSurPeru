@@ -53,6 +53,7 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Herramientas\Dialogo.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,10 +66,19 @@
     <Compile Include="Mantenimientos\frmEmpresas.Designer.cs">
       <DependentUpon>frmEmpresas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenimientos\frmPruebas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\frmPruebas.Designer.cs">
+      <DependentUpon>frmPruebas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Mantenimientos\frmEmpresas.resx">
       <DependentUpon>frmEmpresas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\frmPruebas.resx">
+      <DependentUpon>frmPruebas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -100,6 +110,10 @@
     <ProjectReference Include="..\BOL\BOL.csproj">
       <Project>{ae1dd460-0910-4328-9413-d7ba4e507005}</Project>
       <Name>BOL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ENTITIES\ENTITIES.csproj">
+      <Project>{99c01910-4870-4591-8eef-c1ac4a4922bf}</Project>
+      <Name>ENTITIES</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

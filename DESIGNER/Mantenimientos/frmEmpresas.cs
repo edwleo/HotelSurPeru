@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using BOL;
+using DESIGNER.Herramientas;
+using ENTITIES;
 
 namespace DESIGNER.Mantenimientos
 {
     public partial class frmEmpresas : Form
     {
         Empresa empresa = new Empresa();
+        EEmpresa entidadEmpresa = new EEmpresa();
 
         public frmEmpresas()
         {
@@ -42,31 +45,43 @@ namespace DESIGNER.Mantenimientos
                 txtRUC.Text.Trim().Length != 11 || 
                 txtDireccion.Text.Trim() == String.Empty)
             {
-                MessageBox.Show(
-                    "Complete los 3 primeros campos por favor", 
-                    "Hotel Ver. 1", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Information);
+                Dialogo.Informar("Complete los 3 primeros campos por favor");
             }
             else
             {
-                if (MessageBox.Show(
-                    "¿Registramos la empresa?",
-                    "Hotel Ver. 1",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes)
+                if (Dialogo.Preguntar("¿Registramos la empresa?") == DialogResult.Yes)
                 {
-                    empresa.registrar(txtRazonSocial.Text, txtRUC.Text, txtDireccion.Text, txtTelefono.Text, txtEmail.Text);
-                    gridEmpresas.DataSource = empresa.listarActivos();
-                    gridEmpresas.Refresh();
+                    //Enviar los valores de las cajas de texto a la entidad
+                    entidadEmpresa.razonSocial = txtRazonSocial.Text.Trim();
+                    entidadEmpresa.ruc = txtRUC.Text.Trim();
+                    entidadEmpresa.direccion = txtDireccion.Text.Trim();
+                    entidadEmpresa.telefono = txtTelefono.Text.Trim();
+                    entidadEmpresa.email = txtEmail.Text.Trim();
+                    
+                    //La entidad es enviada al método como parámetro
+                    if (empresa.registrar(entidadEmpresa) > 0)
+                    {
+                        //Comportamientos postinserción de datos
+                        gridEmpresas.DataSource = empresa.listarActivos();
+                        gridEmpresas.Refresh();
 
-                    txtRazonSocial.Clear();
-                    txtRUC.Clear();
-                    txtDireccion.Clear();
-                    txtTelefono.Clear();
-                    txtEmail.Clear();
+                        txtRazonSocial.Clear();
+                        txtRUC.Clear();
+                        txtDireccion.Clear();
+                        txtTelefono.Clear();
+                        txtEmail.Clear();
+                    }
+                    else
+                    {
+                        Dialogo.Error("Error, no se pudo guardar el registro");
+                    }
                 }
             }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
